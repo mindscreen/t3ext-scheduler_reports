@@ -91,6 +91,7 @@ class SchedulerTaskStatus implements StatusProviderInterface
                     // TODO: Use task specific delay / execution time if it exists in database
 
                     if ($schedulerRecord['disable']) {
+                        // Warning for disabled task
                         $result[] = GeneralUtility::makeInstance(Status::class,
                             $name,
                             'Task is disabled.',
@@ -129,10 +130,7 @@ class SchedulerTaskStatus implements StatusProviderInterface
                     }
 
                     // Check if the last run failed
-                    if (!empty($schedulerRecord['lastexecution_failure'])) {                        // Warning for disabled task
-                        print_r($schedulerRecord);
-
-
+                    if (!empty($schedulerRecord['lastexecution_failure'])) {
                         $value = 'Exception during last execution.';
                         $status = Status::ERROR;
                         // Try to get the stored exception array
@@ -217,10 +215,7 @@ class SchedulerTaskStatus implements StatusProviderInterface
      *
      * The name of the class itself is used as the key of the list array
      *
-     * @return array List of registered classes                        // Warning for disabled task
-                        print_r($schedulerRecord);
-
-
+     * @return array List of registered classes
      */
     protected function getRegisteredClasses()
     {

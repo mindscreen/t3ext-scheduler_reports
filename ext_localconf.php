@@ -1,6 +1,9 @@
 <?php
 
-if (!defined('TYPO3_MODE')) {
-    die('Access denied.');
-}
-
+$GLOBALS['TYPO3_CONF_VARS']['scheduler_reports'] = [
+    'maximumTimeSinceLastExecution' => 10,
+    'defaults' => [
+        'maximumDelay' => 20,
+        'maximumExecutionTime' => 5,
+    ]
+];
